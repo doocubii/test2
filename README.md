@@ -32,3 +32,47 @@ sequenceDiagram
 
 
 ```
+##수정본
+
+```mermaid
+
+classDiagram
+  class MembershipSystem {
+    + signUp()
+    + viewProfile()
+    + withdraw()
+    + approveMembership()
+    + listMembersByGrade(grade)
+    + listWithdrawnMembers()
+    - upgradeMembership()
+  }
+
+  class User {
+    + signUp()
+    + viewProfile()
+    + withdraw()
+    + accumulatePoints()
+  }
+
+  class Admin {
+    + approveMembership()
+    + listMembersByGrade(grade)
+    + listWithdrawnMembers()
+  }
+
+  class Membership {
+    - points: int
+    - grade: string
+    + getPoints()
+    + getGrade()
+    + upgradeMembership()
+  }
+
+  MembershipSystem o-- User : 포함
+  MembershipSystem o-- Admin : 포함
+  MembershipSystem o-- Membership : 포함
+  MembershipSystem "1" o-- "*" Membership : 관리
+  User o-- Membership : 소유
+  Admin o-- Membership : 소유
+
+```
